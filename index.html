@@ -1,0 +1,741 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Shafieul Hussain Mohammad — Software Engineer</title>
+<link href="https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&family=Syne:wght@400;600;700;800&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #0a0a0f;
+    --bg2: #0f0f18;
+    --card: #13131f;
+    --border: #1e1e32;
+    --accent: #00e5ff;
+    --accent2: #7c3aed;
+    --accent3: #10b981;
+    --text: #e2e8f0;
+    --muted: #64748b;
+    --mono: 'Space Mono', monospace;
+    --sans: 'Syne', sans-serif;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: var(--sans);
+    overflow-x: hidden;
+  }
+
+  /* Grid background */
+  body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background-image:
+      linear-gradient(rgba(0,229,255,0.03) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(0,229,255,0.03) 1px, transparent 1px);
+    background-size: 60px 60px;
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  /* NAV */
+  nav {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    z-index: 100;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1.2rem 4rem;
+    background: rgba(10,10,15,0.85);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--border);
+  }
+
+  .nav-logo {
+    font-family: var(--mono);
+    font-size: 0.85rem;
+    color: var(--accent);
+    letter-spacing: 0.1em;
+  }
+
+  .nav-links { display: flex; gap: 2rem; list-style: none; }
+  .nav-links a {
+    font-family: var(--mono);
+    font-size: 0.75rem;
+    color: var(--muted);
+    text-decoration: none;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    transition: color 0.2s;
+  }
+  .nav-links a:hover { color: var(--accent); }
+
+  /* SECTIONS */
+  section { position: relative; z-index: 1; }
+
+  /* HERO */
+  #hero {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    padding: 8rem 4rem 4rem;
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+
+  .hero-content { max-width: 760px; }
+
+  .hero-tag {
+    font-family: var(--mono);
+    font-size: 0.75rem;
+    color: var(--accent);
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    margin-bottom: 1.5rem;
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+  }
+
+  .hero-tag::before {
+    content: '';
+    display: inline-block;
+    width: 2rem;
+    height: 1px;
+    background: var(--accent);
+  }
+
+  h1 {
+    font-size: clamp(3rem, 7vw, 5.5rem);
+    font-weight: 800;
+    line-height: 1.0;
+    letter-spacing: -0.03em;
+    margin-bottom: 1.5rem;
+  }
+
+  h1 .line2 {
+    color: transparent;
+    -webkit-text-stroke: 1px rgba(226,232,240,0.3);
+  }
+
+  .hero-desc {
+    font-size: 1.1rem;
+    color: var(--muted);
+    line-height: 1.7;
+    max-width: 540px;
+    margin-bottom: 2.5rem;
+  }
+
+  .hero-stack {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    margin-bottom: 2.5rem;
+  }
+
+  .tag {
+    font-family: var(--mono);
+    font-size: 0.7rem;
+    padding: 0.3rem 0.75rem;
+    border: 1px solid var(--border);
+    border-radius: 2px;
+    color: var(--muted);
+    letter-spacing: 0.05em;
+  }
+
+  .tag.highlight { border-color: var(--accent); color: var(--accent); }
+  .tag.highlight2 { border-color: var(--accent2); color: #a78bfa; }
+  .tag.highlight3 { border-color: var(--accent3); color: var(--accent3); }
+
+  .hero-btns { display: flex; gap: 1rem; flex-wrap: wrap; }
+
+  .btn {
+    font-family: var(--mono);
+    font-size: 0.75rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    padding: 0.85rem 1.75rem;
+    text-decoration: none;
+    border: 1px solid;
+    transition: all 0.2s;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+  }
+
+  .btn-primary {
+    background: var(--accent);
+    border-color: var(--accent);
+    color: #000;
+    font-weight: 700;
+  }
+  .btn-primary:hover { background: transparent; color: var(--accent); }
+
+  .btn-outline {
+    background: transparent;
+    border-color: var(--border);
+    color: var(--muted);
+  }
+  .btn-outline:hover { border-color: var(--accent); color: var(--accent); }
+
+  /* SECTION HEADERS */
+  .section-wrap {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 6rem 4rem;
+  }
+
+  .section-label {
+    font-family: var(--mono);
+    font-size: 0.7rem;
+    color: var(--accent);
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    margin-bottom: 0.75rem;
+  }
+
+  .section-title {
+    font-size: 2.5rem;
+    font-weight: 800;
+    letter-spacing: -0.02em;
+    margin-bottom: 3rem;
+  }
+
+  .divider {
+    width: 100%;
+    height: 1px;
+    background: var(--border);
+    margin-bottom: 3rem;
+  }
+
+  /* SKILLS */
+  #skills { background: var(--bg2); }
+
+  .skills-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 1.5rem;
+  }
+
+  .skill-card {
+    background: var(--card);
+    border: 1px solid var(--border);
+    padding: 1.5rem;
+    transition: border-color 0.2s;
+  }
+  .skill-card:hover { border-color: var(--accent); }
+
+  .skill-card-label {
+    font-family: var(--mono);
+    font-size: 0.65rem;
+    color: var(--accent);
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    margin-bottom: 1rem;
+  }
+
+  .skill-tags { display: flex; flex-wrap: wrap; gap: 0.4rem; }
+
+  .skill-tag {
+    font-family: var(--mono);
+    font-size: 0.68rem;
+    padding: 0.25rem 0.6rem;
+    background: var(--bg);
+    border: 1px solid var(--border);
+    color: var(--text);
+    border-radius: 2px;
+  }
+
+  /* PROJECTS */
+  .projects-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(360px, 1fr));
+    gap: 1.5rem;
+  }
+
+  .project-card {
+    background: var(--card);
+    border: 1px solid var(--border);
+    padding: 2rem;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    transition: border-color 0.25s, transform 0.25s;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .project-card::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 2px;
+    background: linear-gradient(90deg, var(--accent), var(--accent2));
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform 0.3s;
+  }
+
+  .project-card:hover { border-color: rgba(0,229,255,0.3); transform: translateY(-3px); }
+  .project-card:hover::before { transform: scaleX(1); }
+
+  .project-card.featured::before { transform: scaleX(1); }
+  .project-card.featured { border-color: rgba(0,229,255,0.2); }
+
+  .project-badge {
+    font-family: var(--mono);
+    font-size: 0.6rem;
+    padding: 0.2rem 0.6rem;
+    background: rgba(0,229,255,0.1);
+    border: 1px solid rgba(0,229,255,0.3);
+    color: var(--accent);
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    align-self: flex-start;
+  }
+
+  .project-title {
+    font-size: 1.2rem;
+    font-weight: 700;
+    letter-spacing: -0.01em;
+  }
+
+  .project-desc {
+    font-size: 0.9rem;
+    color: var(--muted);
+    line-height: 1.6;
+    flex: 1;
+  }
+
+  .project-tech { display: flex; flex-wrap: wrap; gap: 0.4rem; }
+
+  .project-link {
+    font-family: var(--mono);
+    font-size: 0.7rem;
+    color: var(--accent);
+    text-decoration: none;
+    letter-spacing: 0.1em;
+    display: flex;
+    align-items: center;
+    gap: 0.4rem;
+    margin-top: 0.5rem;
+    transition: gap 0.2s;
+  }
+  .project-link:hover { gap: 0.75rem; }
+
+  /* EXPERIENCE */
+  #experience { background: var(--bg2); }
+
+  .exp-item {
+    display: grid;
+    grid-template-columns: 200px 1fr;
+    gap: 2rem;
+    padding: 2rem 0;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .exp-item:last-child { border-bottom: none; }
+
+  .exp-meta { }
+
+  .exp-company {
+    font-weight: 700;
+    font-size: 1rem;
+    margin-bottom: 0.25rem;
+  }
+
+  .exp-period {
+    font-family: var(--mono);
+    font-size: 0.68rem;
+    color: var(--accent);
+    letter-spacing: 0.05em;
+  }
+
+  .exp-location {
+    font-family: var(--mono);
+    font-size: 0.65rem;
+    color: var(--muted);
+    margin-top: 0.25rem;
+  }
+
+  .exp-role {
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: var(--muted);
+    margin-bottom: 1rem;
+    font-family: var(--mono);
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+  }
+
+  .exp-bullets { list-style: none; display: flex; flex-direction: column; gap: 0.6rem; }
+
+  .exp-bullets li {
+    font-size: 0.9rem;
+    color: var(--muted);
+    line-height: 1.6;
+    padding-left: 1rem;
+    position: relative;
+  }
+
+  .exp-bullets li::before {
+    content: '▸';
+    position: absolute;
+    left: 0;
+    color: var(--accent);
+    font-size: 0.7rem;
+    top: 0.2rem;
+  }
+
+  /* CONTACT */
+  #contact {
+    text-align: center;
+    padding: 8rem 4rem;
+    max-width: 600px;
+    margin: 0 auto;
+  }
+
+  #contact .section-title { font-size: 3rem; }
+
+  .contact-desc {
+    color: var(--muted);
+    margin: 1rem 0 2.5rem;
+    line-height: 1.7;
+  }
+
+  .contact-links {
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+    flex-wrap: wrap;
+    margin-top: 2rem;
+  }
+
+  /* FOOTER */
+  footer {
+    border-top: 1px solid var(--border);
+    padding: 2rem 4rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: relative;
+    z-index: 1;
+  }
+
+  footer span {
+    font-family: var(--mono);
+    font-size: 0.7rem;
+    color: var(--muted);
+  }
+
+  /* ANIMATIONS */
+  .fade-up {
+    opacity: 0;
+    transform: translateY(30px);
+    animation: fadeUp 0.7s ease forwards;
+  }
+
+  @keyframes fadeUp {
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  .fade-up:nth-child(1) { animation-delay: 0.1s; }
+  .fade-up:nth-child(2) { animation-delay: 0.25s; }
+  .fade-up:nth-child(3) { animation-delay: 0.4s; }
+  .fade-up:nth-child(4) { animation-delay: 0.55s; }
+
+  /* cursor blink */
+  .cursor {
+    display: inline-block;
+    width: 3px;
+    height: 1em;
+    background: var(--accent);
+    margin-left: 4px;
+    vertical-align: text-bottom;
+    animation: blink 1s step-end infinite;
+  }
+
+  @keyframes blink {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0; }
+  }
+
+  @media (max-width: 768px) {
+    nav { padding: 1rem 1.5rem; }
+    .nav-links { display: none; }
+    #hero { padding: 6rem 1.5rem 3rem; }
+    .section-wrap { padding: 4rem 1.5rem; }
+    .exp-item { grid-template-columns: 1fr; gap: 0.75rem; }
+    footer { flex-direction: column; gap: 0.5rem; text-align: center; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-logo">SH_MOHAMMAD.DEV</div>
+  <ul class="nav-links">
+    <li><a href="#skills">Skills</a></li>
+    <li><a href="#projects">Projects</a></li>
+    <li><a href="#experience">Experience</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<section id="hero">
+  <div class="hero-content">
+    <div class="hero-tag fade-up">Available for SDE &amp; Data Engineering roles</div>
+    <h1 class="fade-up">
+      SHAFIEUL<br>
+      <span class="line2">HUSSAIN</span><br>
+      MOHAMMAD<span class="cursor"></span>
+    </h1>
+    <p class="hero-desc fade-up">
+      Software Engineer with 5+ years building scalable backend systems,
+      cloud-native microservices, and distributed APIs. Currently expanding
+      into AI/ML infrastructure and data engineering.
+    </p>
+    <div class="hero-stack fade-up">
+      <span class="tag highlight">Java</span>
+      <span class="tag highlight">Python</span>
+      <span class="tag highlight">Spring Boot</span>
+      <span class="tag">AWS</span>
+      <span class="tag">Kubernetes</span>
+      <span class="tag">Kafka</span>
+      <span class="tag highlight2">LangChain</span>
+      <span class="tag highlight2">scikit-learn</span>
+      <span class="tag highlight3">Apache Spark</span>
+      <span class="tag highlight3">PostgreSQL</span>
+    </div>
+    <div class="hero-btns fade-up">
+      <a href="https://www.linkedin.com/in/shafieul" class="btn btn-primary" target="_blank">LinkedIn ↗</a>
+      <a href="https://github.com/shafieulhussain" class="btn btn-outline" target="_blank">GitHub ↗</a>
+      <a href="mailto:shafieulhussain.sh@gmail.com" class="btn btn-outline">Email Me</a>
+    </div>
+  </div>
+</section>
+
+<!-- SKILLS -->
+<section id="skills">
+  <div class="section-wrap">
+    <div class="section-label">// 001</div>
+    <h2 class="section-title">Technical Skills</h2>
+    <div class="divider"></div>
+    <div class="skills-grid">
+      <div class="skill-card">
+        <div class="skill-card-label">Languages</div>
+        <div class="skill-tags">
+          <span class="skill-tag">Java</span>
+          <span class="skill-tag">Python</span>
+          <span class="skill-tag">JavaScript</span>
+          <span class="skill-tag">SQL</span>
+          <span class="skill-tag">C++</span>
+        </div>
+      </div>
+      <div class="skill-card">
+        <div class="skill-card-label">Backend</div>
+        <div class="skill-tags">
+          <span class="skill-tag">Spring Boot</span>
+          <span class="skill-tag">Node.js</span>
+          <span class="skill-tag">REST APIs</span>
+          <span class="skill-tag">OAuth 2.0</span>
+          <span class="skill-tag">JWT</span>
+          <span class="skill-tag">FastAPI</span>
+        </div>
+      </div>
+      <div class="skill-card">
+        <div class="skill-card-label">Cloud &amp; Infrastructure</div>
+        <div class="skill-tags">
+          <span class="skill-tag">AWS EC2/ECS</span>
+          <span class="skill-tag">Lambda</span>
+          <span class="skill-tag">RDS/S3</span>
+          <span class="skill-tag">SageMaker</span>
+          <span class="skill-tag">Docker</span>
+          <span class="skill-tag">Kubernetes</span>
+          <span class="skill-tag">Terraform</span>
+        </div>
+      </div>
+      <div class="skill-card">
+        <div class="skill-card-label">Databases</div>
+        <div class="skill-tags">
+          <span class="skill-tag">PostgreSQL</span>
+          <span class="skill-tag">MySQL</span>
+          <span class="skill-tag">MongoDB</span>
+          <span class="skill-tag">Redis</span>
+          <span class="skill-tag">DynamoDB</span>
+        </div>
+      </div>
+      <div class="skill-card">
+        <div class="skill-card-label">Data &amp; Messaging</div>
+        <div class="skill-tags">
+          <span class="skill-tag">Apache Kafka</span>
+          <span class="skill-tag">Apache Spark</span>
+          <span class="skill-tag">AWS SQS/SNS</span>
+          <span class="skill-tag">Pandas</span>
+          <span class="skill-tag">NumPy</span>
+        </div>
+      </div>
+      <div class="skill-card">
+        <div class="skill-card-label">AI / ML</div>
+        <div class="skill-tags">
+          <span class="skill-tag">scikit-learn</span>
+          <span class="skill-tag">LangChain</span>
+          <span class="skill-tag">OpenAI API</span>
+          <span class="skill-tag">Hugging Face</span>
+          <span class="skill-tag">Isolation Forest</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PROJECTS -->
+<section id="projects">
+  <div class="section-wrap">
+    <div class="section-label">// 002</div>
+    <h2 class="section-title">Projects</h2>
+    <div class="divider"></div>
+    <div class="projects-grid">
+
+      <div class="project-card featured">
+        <span class="project-badge">⚡ Featured · AI/ML</span>
+        <div class="project-title">LLM Log Anomaly Detector</div>
+        <p class="project-desc">
+          Two-stage AI pipeline: an Isolation Forest model detects statistical outliers
+          in system logs (CPU, memory, latency, error codes), then LangChain + OpenAI
+          generates plain-English root-cause summaries with remediation steps.
+          Deployed on AWS Lambda with EventBridge-triggered nightly retraining.
+        </p>
+        <div class="project-tech">
+          <span class="tag highlight2">LangChain</span>
+          <span class="tag highlight2">OpenAI API</span>
+          <span class="tag">scikit-learn</span>
+          <span class="tag">FastAPI</span>
+          <span class="tag">AWS Lambda</span>
+          <span class="tag">Python</span>
+        </div>
+        <a href="https://github.com/shafieulhussain/llm-log-anomaly-detector" class="project-link" target="_blank">
+          View on GitHub →
+        </a>
+      </div>
+
+      <div class="project-card">
+        <div class="project-title">Rate Limiter Service</div>
+        <p class="project-desc">
+          Distributed rate limiting service using Token Bucket and Sliding Window
+          algorithms. Thread-safe in-memory data structures with mutex synchronization.
+          Benchmarked under simulated burst traffic — sub-millisecond overhead per request.
+        </p>
+        <div class="project-tech">
+          <span class="tag highlight">Java</span>
+          <span class="tag highlight">Python</span>
+          <span class="tag">Multithreading</span>
+          <span class="tag">Distributed Systems</span>
+        </div>
+        <a href="https://github.com/shafieulhussain" class="project-link" target="_blank">
+          View on GitHub →
+        </a>
+      </div>
+
+      <div class="project-card">
+        <div class="project-title">Distributed Resource Monitor</div>
+        <p class="project-desc">
+          Lightweight Python agents deployed across Linux nodes collect CPU, memory,
+          disk and network metrics in real time. Java REST backend ingests time-series
+          data with fault-tolerant retry logic. Supports historical trend queries and
+          threshold-based alerting.
+        </p>
+        <div class="project-tech">
+          <span class="tag highlight">Python</span>
+          <span class="tag highlight">Java</span>
+          <span class="tag">Linux</span>
+          <span class="tag">REST</span>
+          <span class="tag">Multithreading</span>
+        </div>
+        <a href="https://github.com/shafieulhussain" class="project-link" target="_blank">
+          View on GitHub →
+        </a>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- EXPERIENCE -->
+<section id="experience">
+  <div class="section-wrap">
+    <div class="section-label">// 003</div>
+    <h2 class="section-title">Experience</h2>
+    <div class="divider"></div>
+
+    <div class="exp-item">
+      <div class="exp-meta">
+        <div class="exp-company">Target</div>
+        <div class="exp-period">Jan 2025 – Present</div>
+        <div class="exp-location">Minneapolis, MN</div>
+      </div>
+      <div>
+        <div class="exp-role">Software Engineer</div>
+        <ul class="exp-bullets">
+          <li>Built Java microservices on AWS (EC2, ECS, RDS) handling millions of daily transactions during Black Friday and Cyber Monday peaks.</li>
+          <li>Designed RESTful APIs integrated with payment/fulfillment vendors, reducing transaction latency by 38% and billing accuracy by 28%.</li>
+          <li>Maintained CI/CD pipelines via GitHub Actions, Jenkins, and Kubernetes — achieving 93% deployment success rate.</li>
+          <li>Optimized MySQL/PostgreSQL queries with indexing and Redis caching, cutting DB response time by 31%.</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="exp-item">
+      <div class="exp-meta">
+        <div class="exp-company">TCS</div>
+        <div class="exp-period">Feb 2020 – Jun 2024</div>
+        <div class="exp-location">Pune, India</div>
+      </div>
+      <div>
+        <div class="exp-role">Systems Engineer</div>
+        <ul class="exp-bullets">
+          <li>Built Python backend automation services reducing manual effort by 35% across multiple engineering teams.</li>
+          <li>Built multithreaded ETL pipelines for system metrics, cutting end-to-end processing latency by 28%.</li>
+          <li>Owned Linux production debugging — resolved memory leaks, CPU bottlenecks, and concurrency issues.</li>
+          <li>Implemented automated health checks reducing incident detection and response time by 40%.</li>
+        </ul>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact">
+  <div class="section-label">// 004</div>
+  <h2 class="section-title">Let's Work Together</h2>
+  <p class="contact-desc">
+    Open to Software Engineer, Data Engineer, and ML Infrastructure roles.
+    Based in Orlando, FL — open to remote.
+  </p>
+  <a href="mailto:shafieulhussain.sh@gmail.com" class="btn btn-primary">
+    shafieulhussain.sh@gmail.com ↗
+  </a>
+  <div class="contact-links">
+    <a href="https://www.linkedin.com/in/shafieul" class="btn btn-outline" target="_blank">LinkedIn</a>
+    <a href="https://github.com/shafieulhussain" class="btn btn-outline" target="_blank">GitHub</a>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <span>© 2026 Shafieul Hussain Mohammad</span>
+  <span>Orlando, FL · Open to Remote</span>
+</footer>
+
+</body>
+</html>
